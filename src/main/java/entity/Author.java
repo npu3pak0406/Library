@@ -19,7 +19,7 @@ public class Author {
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "authors", cascade = CascadeType.ALL)
-    private List<Book> books = new ArrayList<Book>();
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
@@ -58,10 +58,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "id=" + authorId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        return firstName + " " + lastName;
     }
 }

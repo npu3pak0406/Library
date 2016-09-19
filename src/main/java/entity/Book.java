@@ -15,13 +15,12 @@ public class Book {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "booksAuthor", joinColumns = { @JoinColumn(name = "bookId") }, inverseJoinColumns = {
-            @JoinColumn(name = "authorId") })
-    private List<Author> authors = new ArrayList<Author>();
+    @JoinTable(name = "booksAuthor", joinColumns = {@JoinColumn(name = "bookId")}, inverseJoinColumns = {
+            @JoinColumn(name = "authorId")})
+    private List<Author> authors = new ArrayList<>();
 
     public Book() {
     }
-
 
     public Integer getBookId() {
         return bookId;
@@ -49,9 +48,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + bookId +
-                ", name='" + name + '\'' +
-                '}';
+        StringBuilder autorStr = new StringBuilder();
+        for (Author author : authors) {
+            autorStr.append(author.toString()).append(", ");
+        }
+        return autorStr.toString() + "\"" + name + "\"";
     }
 }

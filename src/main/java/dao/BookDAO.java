@@ -8,7 +8,7 @@ public interface BookDAO<T, I extends Serializable> {
 
     void update(T entity);
 
-    void delete(T entity);
+    void delete(I id);
 
     List<T> findAll();
 

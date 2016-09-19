@@ -35,10 +35,10 @@ public class BookDAOImpl implements BookDAO<Book, Integer> {
         }
     }
 
-    public void delete(Book entity) {
+    public void delete(Integer id) {
         try {
             startOperation();
-            session.delete(entity);
+            session.delete(session.load(Book.class, id));
             tx.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class BookDAOImpl implements BookDAO<Book, Integer> {
         List<Book> books = null;
         try {
             startOperation();
-            Query query = session.createQuery("from " + Book.class.getName() + "where name =:name");
+            Query query = session.createQuery("FROM " + Book.class.getName() + " b WHERE b.name =:name");
             query.setParameter("name", name);
             books = query.list();
             tx.commit();
