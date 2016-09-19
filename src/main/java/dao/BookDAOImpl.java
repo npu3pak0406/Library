@@ -51,7 +51,7 @@ public class BookDAOImpl implements BookDAO<Book, Integer> {
         List<Book> books = null;
         try {
             startOperation();
-            Query query = session.createQuery("from " + Book.class.getName());
+            Query query = session.createQuery("from " + Book.class.getName() + " B order by B.name");
             books = query.list();
             tx.commit();
         } catch (HibernateException e) {
@@ -67,7 +67,7 @@ public class BookDAOImpl implements BookDAO<Book, Integer> {
         List<Book> books = null;
         try {
             startOperation();
-            Query query = session.createQuery("FROM " + Book.class.getName() + " b WHERE b.name =:name");
+            Query query = session.createQuery("FROM " + Book.class.getName() + " B WHERE B.name =:name");
             query.setParameter("name", name);
             books = query.list();
             tx.commit();
