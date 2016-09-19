@@ -52,7 +52,7 @@ public class BookController implements CommandController {
                     LOGGER.info("Library doesn't have book with name " + "\" " + name + "\"");
                 } else if (books.size() > 1) {
                     System.out.println("Library has " + books.size() + " books with name \"" + name + "\"" + ", which exactly you want to choose: ");
-                    final Integer inputNumber = UserUtil.askUserForNumberInput(scanner, books, books.size());
+                    final Integer inputNumber = UserUtil.askUserForNumberInput(scanner, books);
                     bookDAO.delete(books.get(inputNumber - 1).getBookId());
                     LOGGER.info("Book ({}) has been successfully removed from library", books.get(0).toString());
                 } else {
@@ -68,7 +68,7 @@ public class BookController implements CommandController {
                     LOGGER.info("Library doesn't have book with name " + "\" " + name + "\"");
                 } else if (books.size() > 1) {
                     System.out.println("Library has " + books.size() + " books with name \"" + name + "\"" + ", which exactly you want to choose: ");
-                    final Integer inputNumber = UserUtil.askUserForNumberInput(scanner, books, books.size());
+                    final Integer inputNumber = UserUtil.askUserForNumberInput(scanner, books);
                     bookDAO.update(setBookParam(scanner, books.get(inputNumber - 1)));
                     LOGGER.info("Book ({}) has been successfully updated", books.get(0).toString());
                 } else {

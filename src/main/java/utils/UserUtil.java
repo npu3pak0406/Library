@@ -25,18 +25,18 @@ public class UserUtil {
         do {
             System.out.println("\nPlease select menu item:\n");
             Scanner scanner = new Scanner(System.in);
-            final int mainMenuSelection = askUserForNumberInput(scanner, USER_COMMANDS, 5);
+            final int mainMenuSelection = askUserForNumberInput(scanner, USER_COMMANDS);
             String command = USER_COMMANDS.get(mainMenuSelection - 1);
             commandController.execute(command);
         } while (true);
     }
 
-    public static int askUserForNumberInput(Scanner scanner, List<?> prompt, int maxValue) {
+    public static int askUserForNumberInput(Scanner scanner, List<?> prompt) {
         for (int i = 0; i < prompt.size(); i++) {
             System.out.println(i + 1 + ". " + prompt.get(i));
         }
         int value = scanner.nextInt();
-        while (value < 1 || value > maxValue) {
+        while (value < 1 || value > prompt.size()) {
             System.out.println("invalid menu item, please try again");
             value = scanner.nextInt();
         }
